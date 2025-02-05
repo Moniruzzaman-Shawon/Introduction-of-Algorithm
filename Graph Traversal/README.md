@@ -22,9 +22,10 @@ You can use an online graph editor here: [Graph Editor](https://csacademy.com/ap
 | Pathways   | Only one way | Multiple ways |
 | Edge Direction | One way | All ways |
 
-##Graph Traversal
-- **BFS (Breadth-First Search) Level-wise
-- **DFS (Depth-First Search) Depth-wise  
+# Graph Traversal  
+
+- **BFS (Breadth-First Search)** – Level-wise  
+- **DFS (Depth-First Search)** – Depth-wise  
 
 ## Graph Examples  
 - **Google Maps** (Finding shortest paths)  
