@@ -77,5 +77,5 @@ int main() {
 
 ---
 
-This README file is ready to be used in your **GitHub repository**. Let me know if you need any modifications! 😊
+Let me know if you need any modifications! 😊
 
