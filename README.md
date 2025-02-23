@@ -1,81 +1,135 @@
-# Dijkstra's Algorithm 🚀  
+# 🔍 Graph Algorithms: DFS vs BFS vs Dijkstra vs Bellman-Ford vs Floyd-Warshall
 
-## **Overview**  
-Dijkstra's Algorithm is used to find the shortest path from a **single source node** to all other nodes in a weighted graph (with non-negative weights).  
-
-## **Time Complexity Analysis**  
-- **Priority Queue Operations** (Push/Pop) → `O(log V)`  
-- **Total Complexity Calculation**:  
-  - \( O((E + V) \log V) \)  
-  - Since \( E \geq V \), we approximate:  
-    - \( O((E + E) \log V) = O(2E \log V) \)  
-  - Removing constants → **\( O(E \log V) \)**  
-
-## **C++ Implementation**  
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
-#define INF INT_MAX
-
-// Dijkstra's Algorithm using Priority Queue (Min-Heap)
-void dijkstra(int V, vector<pair<int, int>> adj[], int src) {
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    vector<int> dist(V, INF);
-
-    dist[src] = 0;
-    pq.push({0, src}); // (distance, node)
-
-    while (!pq.empty()) {
-        int u = pq.top().second;
-        int d = pq.top().first;
-        pq.pop();
-
-        if (d > dist[u]) continue; // Ignore outdated distances
-
-        for (auto edge : adj[u]) {
-            int v = edge.first;
-            int weight = edge.second;
-
-            if (dist[u] + weight < dist[v]) {
-                dist[v] = dist[u] + weight;
-                pq.push({dist[v], v});
-            }
-        }
-    }
-
-    // Print shortest distances from source
-    for (int i = 0; i < V; i++) {
-        cout << "Node " << i << " -> Distance: " << (dist[i] == INF ? -1 : dist[i]) << endl;
-    }
-}
-
-int main() {
-    int V = 5; // Number of vertices
-    vector<pair<int, int>> adj[V];
-
-    // Example graph (undirected)
-    adj[0].push_back({1, 10});
-    adj[0].push_back({4, 5});
-    adj[1].push_back({2, 1});
-    adj[1].push_back({4, 2});
-    adj[2].push_back({3, 4});
-    adj[3].push_back({0, 7});
-    adj[3].push_back({2, 6});
-    adj[4].push_back({1, 3});
-    adj[4].push_back({2, 9});
-    adj[4].push_back({3, 2});
-
-    int source = 0;
-    dijkstra(V, adj, source);
-
-    return 0;
-}
-
-
-
+This repository contains a comparison of **DFS**, **BFS**, **Dijkstra**, **Bellman-Ford**, and **Floyd-Warshall** algorithms, their applications, time complexities, and when to use them.
 
 ---
 
-Let me know if you need any modifications! 😊
+## 📌 **1. Depth-First Search (DFS)**
+✅ **Purpose**: Used for **graph traversal** (explores as deep as possible before backtracking).  
+✅ **Type**: Unweighted traversal algorithm.  
+✅ **Works on**: Both **directed and undirected graphs**.  
 
+### **Approach**
+- Uses **recursion (or a stack)** to explore a path **deeply** before moving to another.
+- Common applications:
+  - **Cycle detection**
+  - **Connected components**
+  - **Topological sorting**
+
+### **Complexity**
+| Case | Complexity |
+|------|------------|
+| **Time Complexity** | O(V + E) |
+| **Space Complexity** | O(V) |
+
+---
+
+## 📌 **2. Breadth-First Search (BFS)**
+✅ **Purpose**: Used for **graph traversal** (explores level by level).  
+✅ **Type**: Unweighted traversal algorithm.  
+✅ **Works on**: Both **directed and undirected graphs**.  
+
+### **Approach**
+- Uses a **queue** to explore all **neighbors** of a node before moving deeper.
+- Common applications:
+  - **Finding shortest paths in unweighted graphs**
+  - **Connected components in an undirected graph**
+
+### **Complexity**
+| Case | Complexity |
+|------|------------|
+| **Time Complexity** | O(V + E) |
+| **Space Complexity** | O(V) |
+
+---
+
+## 📌 **3. Dijkstra's Algorithm**
+✅ **Purpose**: Finds the **shortest path from a single source** in a weighted graph (no negative weights).  
+✅ **Type**: Greedy Algorithm.  
+✅ **Works on**: **Directed & undirected graphs** with **non-negative weights**.  
+
+### **Approach**
+- Uses a **priority queue (min-heap)** to always expand the **shortest known path**.  
+- Used in:
+  - **Google Maps**
+  - **Network routing**
+  - **AI pathfinding**
+
+### **Complexity**
+| Case | Complexity |
+|------|------------|
+| **Time Complexity** | O((V + E) log V) |
+| **Space Complexity** | O(V) |
+
+---
+
+## 📌 **4. Bellman-Ford Algorithm**
+✅ **Purpose**: Finds the **shortest path from a single source**, even if **negative weights** exist.  
+✅ **Type**: Dynamic Programming.  
+✅ **Works on**: **Directed & undirected graphs** with **negative weights**.  
+
+### **Approach**
+- Iterates **V-1 times** over all edges to relax distances.
+- Can detect **negative weight cycles**.
+
+### **Complexity**
+| Case | Complexity |
+|------|------------|
+| **Time Complexity** | O(V × E) |
+| **Space Complexity** | O(V) |
+
+---
+
+## 📌 **5. Floyd-Warshall Algorithm**
+✅ **Purpose**: Finds the **shortest path between all pairs of vertices**.  
+✅ **Type**: Dynamic Programming.  
+✅ **Works on**: **All types of graphs**, including **negative weights** (but no negative cycles).  
+
+### **Approach**
+- Uses a **distance matrix** and iteratively updates shortest paths.
+- Suitable for **dense graphs**.
+
+### **Complexity**
+| Case | Complexity |
+|------|------------|
+| **Time Complexity** | O(V³) |
+| **Space Complexity** | O(V²) |
+
+---
+
+## 📊 **Comparison Table**
+| Algorithm        | Purpose                                    | Works on                | Handles Negative Weights? | Time Complexity |
+|-----------------|-------------------------------------------|-------------------------|--------------------------|----------------|
+| **DFS**         | Graph traversal (deep-first)             | Unweighted graphs       | ❌ No                    | O(V + E) |
+| **BFS**         | Graph traversal (level-order)            | Unweighted graphs       | ❌ No                    | O(V + E) |
+| **Dijkstra**    | Single-source shortest path              | Weighted graphs (no negative) | ❌ No            | O((V + E) log V) |
+| **Bellman-Ford**| Single-source shortest path (negative weights) | Weighted graphs         | ✅ Yes                   | O(V × E) |
+| **Floyd-Warshall** | All-pairs shortest paths               | Weighted graphs         | ✅ Yes                   | O(V³) |
+
+---
+
+## 🛠️ **When to Use Which Algorithm?**
+- **DFS** → When you need to **explore paths deeply** (e.g., cycle detection, connected components).  
+- **BFS** → When you need **shortest paths in an unweighted graph**.  
+- **Dijkstra** → When you need the **shortest path from a single source** in a **non-negative weighted graph**.  
+- **Bellman-Ford** → When the graph **has negative weights** and you need the **shortest path from a single source**.  
+- **Floyd-Warshall** → When you need **shortest paths between all pairs of nodes**.
+
+---
+
+## 🎯 **Key Takeaways**
+- **Dijkstra is faster than Bellman-Ford** but **cannot handle negative weights**.  
+- **Bellman-Ford detects negative cycles**, whereas **Dijkstra doesn’t**.  
+- **Floyd-Warshall is useful for dense graphs** but is **inefficient for large graphs**.  
+- **DFS and BFS are traversal algorithms** and do not compute shortest paths in weighted graphs.  
+
+---
+
+## 📜 **License**
+This project is open-source and available under the **MIT License**.
+
+---
+
+🔹 **Contributions are welcome!** Feel free to fork, star ⭐, or submit pull requests. 🚀
+
+---
