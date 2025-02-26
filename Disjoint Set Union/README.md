@@ -85,3 +85,18 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+---
+
+### **Key Features of this README:**
+✅ **Well-structured with explanation and code snippets**  
+✅ **Includes compilation and execution instructions**  
+✅ **Shows expected output**  
+✅ **Explains applications and complexity analysis**  
+
+Let me know if you want any modifications! 🚀
+
