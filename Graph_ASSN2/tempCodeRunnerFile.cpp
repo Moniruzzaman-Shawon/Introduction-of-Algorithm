@@ -1,0 +1,1 @@
+edge_list = vector<Edge>(); // Instead of `clear()`, just reinitialize
