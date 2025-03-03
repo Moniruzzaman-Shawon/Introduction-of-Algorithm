@@ -229,7 +229,7 @@ int main() {
 
 ----------------Another Approach---------------------------
 
-## To avoid online judge TLE
+// -------To avoid online judge TLE-------
 #include <bits/stdc++.h>
 using namespace std;
 
