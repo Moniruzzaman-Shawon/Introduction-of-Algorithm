@@ -50,6 +50,7 @@ int fib(int n) {
     return dp[n];
 }
 
+
 int main() {
     int n = 10;
     cout << "Fibonacci(" << n << ") = " << fib(n) << endl;
@@ -207,6 +208,7 @@ int main() {
     return 0;
 }
 
+----------------Another Approach---------------------------
 
 #include <iostream>
 #include <vector>
@@ -225,8 +227,9 @@ int main() {
     return 0;
 }
 
+----------------Another Approach---------------------------
 
-
+## To avoid online judge TLE
 #include <bits/stdc++.h>
 using namespace std;
 
